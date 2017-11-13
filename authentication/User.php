@@ -17,4 +17,36 @@ class User {
     private $id;
     private $mail;
     private $pass;
+    
+    function __construct($mail, $pass, $id = null) {
+        $this->id = $id;
+        $this->mail = $mail;
+        $this->pass = $pass;
+    }
+
+    function getId() {
+        return $this->id;
+    }
+
+    function getMail() {
+        return $this->mail;
+    }
+
+    function getPass() {
+        return $this->pass;
+    }
+
+    function setId($id) {
+        $this->id = $id;
+    }
+
+    function setMail($mail) {
+        $this->mail = $mail;
+    }
+
+    function setPass($pass) {
+        $this->pass = $pass;
+    }
+
+
 }
