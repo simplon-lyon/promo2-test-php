@@ -16,16 +16,22 @@ namespace authentication;
 class AuthService {
     private $daoUser;
     
-    public function __construct(authentication\IDaoUser $dao) {
+    public function __construct(IDaoUser $dao) {
         $this->daoUser = $dao;
     }
     
     public function signup($mail, $pass):bool {
-        //fonction d'inscription, vérifie si l'utilisateur existe avant
-        //de l'ajouter à la base
+        if($this->daoUser->getUserByMail($mail) == null) {
+            $user = new User($mail, $pass);
+            $this->daoUser->addUser($user);
+//            if($user->getId() != null) {
+                return true;
+//            }
+        } 
+        return false;
     }
     
     public function login($mail, $pass) {
-        
+        return $this->daoUser->getUserByLogin($mail, $pass);
     }
 }
